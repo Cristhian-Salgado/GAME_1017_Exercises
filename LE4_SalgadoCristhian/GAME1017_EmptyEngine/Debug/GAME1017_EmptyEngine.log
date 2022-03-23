@@ -1,7 +1,4 @@
-﻿  Button3.cpp
-  Engine.cpp
-  StateManager.cpp
+﻿  PlatformPlayer.cpp
   States.cpp
-  TiledLevel.cpp
   Generating Code...
   GAME1017_EmptyEngine.vcxproj -> P:\GitHub Repo\GAME_1017_Exercises\LE4_SalgadoCristhian\Debug\GAME1017_EmptyEngine.exe

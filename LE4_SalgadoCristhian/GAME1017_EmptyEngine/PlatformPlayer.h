@@ -6,7 +6,7 @@
 #define GRAVITY 2.0
 #define JUMPFORCE 25.0
 
-enum PlayerState { STATE_IDILING, STATE_RUNNING, STATE_JUMPING };
+enum PlayerState { STATE_IDLING, STATE_RUNNING, STATE_JUMPING };
 
 class PlatformPlayer : public AnimatedSpriteObject
 
@@ -30,7 +30,7 @@ public:
 	double GetVelY();
 
 private:
-	bool isGrounded,  m_isFacingLeft;
+	bool m_isGrounded,  m_isFacingLeft;
 	double m_accelX,  m_accelY,
 		   m_velX,    m_velY,
 		   m_maxVelX, m_maxVelY,
