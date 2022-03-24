@@ -71,7 +71,7 @@ void PlatformPlayer::Update()
 		}
 		else if (EVMA::KeyHeld(SDL_SCANCODE_D))
 		{
-			m_accelX = -1.5;
+			m_accelX = 1.5;
 			if (m_isFacingLeft)
 			    m_isFacingLeft = false;
 		}
@@ -121,9 +121,9 @@ void PlatformPlayer::SetAccelX(double a) { m_accelX = a; }
 
 void PlatformPlayer::SetAccely(double a) { m_accelY = a; }
 
-void PlatformPlayer::setX(float x) { m_dst.x = x; }
+void PlatformPlayer::SetX(float x) { m_dst.x = x; }
 
-void PlatformPlayer::setY(float y) { m_dst.y = y; }
+void PlatformPlayer::SetY(float y) { m_dst.y = y; }
 
 void PlatformPlayer::SetGrounded(bool g) { m_isGrounded = g; }
 

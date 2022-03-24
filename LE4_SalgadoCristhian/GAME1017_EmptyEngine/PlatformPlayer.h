@@ -22,8 +22,8 @@ public:
 	void StopY();
 	void SetAccelX(double a);
 	void SetAccely(double a);
-	void setX(float x);
-	void setY(float y);
+	void SetX(float x);
+	void SetY(float y);
 	void SetGrounded(bool g);
 	bool IsGrounded();
 	double GetVelX();
