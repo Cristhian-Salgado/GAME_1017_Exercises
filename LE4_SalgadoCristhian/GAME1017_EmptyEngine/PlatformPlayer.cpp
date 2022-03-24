@@ -8,7 +8,9 @@ m_state(STATE_JUMPING), m_isGrounded(false), m_isFacingLeft(false),
 m_maxVelX(9.0), m_maxVelY(JUMPFORCE), m_grav(GRAVITY), m_drag(0.85)
 {
 	m_accelX = m_accelY = m_velX = m_velY = 0.0;
-	//SetAnimation(?, ?, ?);
+	SetAnimation(2, 8, 9);
+	TEMA::Load("Img/Player.png", "player");
+
 }
 
 void PlatformPlayer::Update()
@@ -20,7 +22,7 @@ void PlatformPlayer::Update()
 		if (EVMA::KeyPressed(SDL_SCANCODE_A) || EVMA::KeyPressed(SDL_SCANCODE_D))
 		{
 			m_state = STATE_RUNNING;
-			//set animation (?, ?, ?);
+			SetAnimation(2, 0, 4);
 		}
 
 		//Transition to jump
@@ -29,7 +31,7 @@ void PlatformPlayer::Update()
 			m_accelY = -JUMPFORCE;
 			m_isGrounded = false;
 			m_state = STATE_JUMPING;
-			// Set animation
+			SetAnimation(2, 8, 9);
 		}
 		break;
 	case STATE_RUNNING:
@@ -51,7 +53,7 @@ void PlatformPlayer::Update()
 		if (!EVMA::KeyHeld(SDL_SCANCODE_A) && !EVMA::KeyHeld(SDL_SCANCODE_D))
 		{
 			m_state = STATE_IDLING;
-				//set animation
+			SetAnimation(2, 0, 1);
 		}
 		//transition to jump
 		else if (EVMA::KeyPressed(SDL_SCANCODE_SPACE) && m_isGrounded)
@@ -59,7 +61,7 @@ void PlatformPlayer::Update()
 			m_accelY = -JUMPFORCE;
 			m_isGrounded = false;
 			m_state = STATE_JUMPING;
-			// Set animation
+			SetAnimation(2, 8, 9);
 		}
 		break;
 	case STATE_JUMPING:
@@ -79,7 +81,7 @@ void PlatformPlayer::Update()
 		if (m_isGrounded)
 		{
 			m_state = STATE_RUNNING;
-			//set animation (?, ?, ?);
+			SetAnimation(2, 0, 4);
 		}
 		break;
 	}
@@ -95,16 +97,16 @@ void PlatformPlayer::Update()
 	m_dst.y += (float)m_velY;
 
 	m_accelX = m_accelY = 0.0;
-	// Animate();
+	Animate();
 }
 
 void PlatformPlayer::Render()
 {
-	/* To animate the sprite, use DSL_RenderCopyExF() and you will have to access the texturemanagerand pass in
-	a key such as "player" .*/
+	/* To animate the sprite, use SDL_RenderCopyExF() and you will have to access the texturemanager 
+	and pass in a key such as "player" .*/
 	// But for this part, we're just going to use a coloured square
-	SDL_SetRenderDrawColor(Engine::Instance().GetRenderer(), 255, 0, 0, 255);
-	SDL_RenderFillRectF(Engine::Instance().GetRenderer(), &m_dst);
+
+	SDL_RenderCopyExF(Engine::Instance().GetRenderer(), TEMA::GetTexture("player"), &m_src, &m_dst, 0, nullptr, SDL_FLIP_NONE);
 }
 
 void PlatformPlayer::Stop()
