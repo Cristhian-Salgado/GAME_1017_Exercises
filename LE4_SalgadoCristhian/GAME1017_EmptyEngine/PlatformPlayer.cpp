@@ -15,6 +15,7 @@ m_maxVelX(9.0), m_maxVelY(JUMPFORCE), m_grav(GRAVITY), m_drag(0.85)
 
 void PlatformPlayer::Update()
 {
+
 	switch (m_state) // Inside each case is the behaviour and transitions from that state
 	{
 	case STATE_IDLING:
@@ -22,7 +23,7 @@ void PlatformPlayer::Update()
 		if (EVMA::KeyPressed(SDL_SCANCODE_A) || EVMA::KeyPressed(SDL_SCANCODE_D))
 		{
 			m_state = STATE_RUNNING;
-			SetAnimation(2, 0, 4);
+			SetAnimation(2, 0, 8);
 		}
 
 		//Transition to jump
@@ -81,7 +82,7 @@ void PlatformPlayer::Update()
 		if (m_isGrounded)
 		{
 			m_state = STATE_RUNNING;
-			SetAnimation(2, 0, 4);
+			SetAnimation(2, 0, 8);
 		}
 		break;
 	}
@@ -90,7 +91,7 @@ void PlatformPlayer::Update()
 	m_velX *= (m_isGrounded ? m_drag : 1.0);
 	m_velX = std::min(std::max(m_velX, -m_maxVelX), m_maxVelX);
 	m_dst.x += (float)m_velX;
-	// Wrap the player on Screen. For us to do
+	
 
 	m_velY += m_accelY + m_grav;
 	m_velY = std::min(std::max(m_velY, -m_maxVelY), m_maxVelY);
@@ -107,6 +108,7 @@ void PlatformPlayer::Render()
 	// But for this part, we're just going to use a coloured square
 
 	SDL_RenderCopyExF(Engine::Instance().GetRenderer(), TEMA::GetTexture("player"), &m_src, &m_dst, 0, nullptr, SDL_FLIP_NONE);
+
 }
 
 void PlatformPlayer::Stop()
