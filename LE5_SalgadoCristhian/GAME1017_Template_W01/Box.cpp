@@ -12,7 +12,7 @@ void Sprite::Render()
     SDL_RenderFillRect(Engine::Instance().GetRenderer(), &m_dst);
 }
 
-Box::Box(const SDL_Point p, bool makeSprite = false, const SDL_Rect r = {0,0,0,0}, const SDL_Color c):m_pos(p), m_pSprite(nullptr)
+Box::Box(const SDL_Point p, bool makeSprite, const SDL_Rect r, const SDL_Color c):m_pos(p), m_pSprite(nullptr)
 {
     if (makeSprite)
     {
@@ -35,9 +35,9 @@ Box* Box::Clone()
 
 void Box::Update()
 {
+    m_pos.x -= SCROLLSPEED;
     if (m_pSprite != nullptr)
     {
-        m_pos.x -= SCROLLSPEED;
         m_pSprite->m_dst.x = m_pos.x;
     }
 }
